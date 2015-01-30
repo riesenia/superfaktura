@@ -1,0 +1,6 @@
+/src/TestConfig.php
+/vendor
+composer.phar
+composer.lock
+.DS_Store
+Thumbs.db
