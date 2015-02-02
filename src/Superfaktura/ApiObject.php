@@ -110,6 +110,13 @@ abstract class ApiObject implements \JsonSerializable, \ArrayAccess
      */
     public function get($name)
     {
+        // fetch data
+        $this->_fetch();
+
+        if (!isset($this->_data[$name])) {
+            return false;
+        }
+
         // if this is a sequential array
         if (is_array($this->_data[$name]) && !count(array_filter(array_keys($this->_data[$name]), 'is_string'))) {
             foreach ($this->_data[$name] as &$data) {

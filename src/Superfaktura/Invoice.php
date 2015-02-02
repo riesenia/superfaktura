@@ -47,6 +47,16 @@ class Invoice extends ApiObject
     }
 
     /**
+     * Alias of getInvoiceItem
+     *
+     * @return array
+     */
+    public function getItems()
+    {
+        return $this->get('InvoiceItem');
+    }
+
+    /**
      * Save invoice
      *
      * @return Rshop\Synchronization\Superfaktura\Invoice
