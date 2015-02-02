@@ -186,7 +186,7 @@ class Invoice extends ApiObject
     protected function _configureOptions(OptionsResolver $resolver)
     {
         // available options
-        $resolver->setDefined(array('already_paid', 'created', 'comment', 'constant', 'delivery', 'delivery_type', 'deposit', 'discount', 'due', 'estimate_id', 'header_comment', 'internal_comment', 'invoice_currency', 'invoice_no_formatted', 'issued_by', 'issued_by_phone', 'issued_by_email', 'name', 'payment_type', 'proforma_id', 'rounding', 'specific', 'sequence_id', 'type', 'variable'));
+        $resolver->setDefined(array('already_paid', 'created', 'comment', 'constant', 'delivery', 'delivery_type', 'deposit', 'discount', 'due', 'estimate_id', 'header_comment', 'internal_comment', 'invoice_currency', 'invoice_no_formatted', 'issued_by', 'issued_by_phone', 'issued_by_email', 'name', 'payment_type', 'proforma_id', 'rounding', 'specific', 'sequence_id', 'tax_document', 'type', 'variable'));
 
         // validate / format options
         $resolver->setNormalizer('already_paid', $resolver->boolNormalizer);
@@ -196,6 +196,7 @@ class Invoice extends ApiObject
         $resolver->setNormalizer('due', $resolver->dateNormalizer);
         $resolver->setAllowedValues('invoice_currency', array('EUR', 'USD', 'GBP', 'HUF', 'CZK', 'PLN', 'CHF', 'RUB'));
         $resolver->setAllowedValues('rounding', array('document', 'item'));
+        $resolver->setNormalizer('tax_document', $resolver->boolNormalizer);
         $resolver->setAllowedValues('type', array('regular', 'proforma', 'cancel', 'estimate', 'order'));
     }
 }

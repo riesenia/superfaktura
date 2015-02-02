@@ -68,6 +68,7 @@ Dostupné atribúty:
 * **rounding** - spôsob zaokrúhľovania DPH: *document* - za celý dokument, *item* - po položkaćh (predvolená hodnota)
 * **specific** - špecifický symbol
 * **sequence_id** - ID číselníka
+* **tax_document** - jedná sa o daňový doklad k prijatej platbe? *true/false*
 * **type** - typ faktúry: *regular* - bežná faktúra, *proforma* - zálohová faktúra, *cancel* - dobropis, *estimate* - cenová ponuka, *order* - prijatá objednávka
 * **variable** - variabilný symbol
 
