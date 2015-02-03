@@ -154,6 +154,34 @@ Existujúcu faktúru je možné stiahnuť prostredníctvom jej ID metódou *getI
 $invoice = $superfaktura->getInvoice(616575);
 ```
 
+### Editácia faktúry
+
+Pri editácii načítanej faktúry je možné postupovať rovnako, ako pri vytváraní novej.
+
+```php
+// zmena variabilného symbolu faktúry
+$invoice['variable'] = '12345';
+
+// pridanie položky
+$invoice->addItem(array(
+    'name' => 'Názov pridávanej položky',
+    'quantity' => 2,
+    'unit_price' => 5.11,
+    'tax' => 20
+));
+
+try {
+    $invoice->save();
+
+    // $invoice obsahuje všetky parametre uloženej faktúry
+    var_dump($invoice['token'], $invoice->getSummary());
+}
+catch (Exception $e) {
+    // chyby, ktoré nastali pri komunikácii, je možné získať metódou getErrors
+    var_dump($e->getErrors());
+}
+```
+
 ### Označenie faktúry ako odoslanej
 
 Označenie metódou *markAsSent*. Užitočné, pokiaľ vytvorené faktúry odosielate vlastným systémom, avšak chcete toto odoslanie evidovať aj v SuperFaktúre.

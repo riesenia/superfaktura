@@ -63,10 +63,17 @@ class Invoice extends ApiObject
      */
     public function save()
     {
-        $this->_data = $this->_apiPost($this->_id ? 'invoices/edit' : 'invoices/create', $this->_data)['data'];
+        $data = array_intersect_key($this->_data, array('Invoice' => 1, 'Client' => 1, 'InvoiceItem' => 1));
 
-        $this->_synced = true;
-        $this->_id = $this['id'];
+        $response = $this->_apiPost($this->_id ? 'invoices/edit' : 'invoices/create', $data);
+
+        // new invoice
+        if (!$this->_id) {
+            $this->_id = $response['data']['Invoice']['id'];
+        }
+
+        $this->_synced = false;
+        $this->_fetch();
 
         return $this;
     }

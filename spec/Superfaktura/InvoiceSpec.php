@@ -47,6 +47,29 @@ class InvoiceSpec extends ObjectBehavior
         TestConfig::$id = $this->getId()->getWrappedObject();
     }
 
+    public function it_edits_invoice()
+    {
+        $this->setId(TestConfig::$id);
+
+        $this->addItem(array(
+            'name' => 'Test item name 2',
+            'unit_price' => 100,
+            'tax' => 20
+        ));
+
+        $this->save();
+
+        // check by summary
+        $this->get('Summary')->shouldReturn(array(
+            'vat_base_separate' => array('10' => 10, '20' => 100),
+            'vat_base_total' => 110,
+            'vat_separate' => array('10' => 1, '20' => 20),
+            'vat_total' => 21,
+            'invoice_total' => 131,
+            'discount' => 0
+        ));
+    }
+
     public function it_marks_as_sent()
     {
         $this->setId(TestConfig::$id)->markAsSent()->shouldReturn(true);
