@@ -2,7 +2,7 @@
 
 [![Latest Version](https://img.shields.io/packagist/v/rshop/superfaktura.svg?style=flat-square)](https://packagist.org/packages/rshop/superfaktura)
 [![Total Downloads](https://img.shields.io/packagist/dt/rshop/superfaktura.svg?style=flat-square)](https://packagist.org/packages/rshop/superfaktura)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
 PHP klient k API rozhraniu online ekonomického systému [SuperFaktúra](http://www.superfaktura.sk/o-nas/).
 
