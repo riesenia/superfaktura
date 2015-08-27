@@ -30,7 +30,7 @@ class Email extends ApiObject
     protected function _configureOptions(OptionsResolver $resolver)
     {
         // available options
-        $resolver->setDefined(array('invoice_id', 'to', 'cc', 'bcc', 'subject', 'body'));
+        $resolver->setDefined(['invoice_id', 'to', 'cc', 'bcc', 'subject', 'body']);
 
         $resolver->setRequired('invoice_id');
         $resolver->setRequired('to');

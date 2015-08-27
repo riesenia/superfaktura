@@ -46,7 +46,7 @@ class Superfaktura
      * @param string optional data
      * @return Rshop\Synchronization\Superfaktura\ApiObject
      */
-    public function create($name, $data = array())
+    public function create($name, $data = [])
     {
         $fullName = __NAMESPACE__ . '\\Superfaktura\\' . $name;
 
@@ -80,7 +80,7 @@ class Superfaktura
     {
         // create<Entity> method
         if (preg_match('/create([A-Z][a-zA-Z0-9]*)/', $method, $matches)) {
-            return call_user_func(array($this, 'create'), $matches[1], isset($arguments[0]) ? $arguments[0] : array());
+            return call_user_func([$this, 'create'], $matches[1], isset($arguments[0]) ? $arguments[0] : []);
         }
 
         // get<Entity> method
@@ -89,7 +89,7 @@ class Superfaktura
                 throw new \DomainException("Entity ID not set.");
             }
 
-            return call_user_func(array($this, 'get'), $matches[1], $arguments[0]);
+            return call_user_func([$this, 'get'], $matches[1], $arguments[0]);
         }
 
         throw new \BadMethodCallException("Unknown method: " . $method);

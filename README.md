@@ -35,10 +35,10 @@ $superfaktura = new Superfaktura('EMAIL', 'API_KEY');
 Novú faktúru je možné vytvoriť metódou *createInvoice*.
 
 ```php
-$invoice = $superfaktura->createInvoice(array(
+$invoice = $superfaktura->createInvoice([
     'name' => 'Názov faktúry',
     'invoice_no_formatted' => '12345'
-));
+]);
 
 // parametre je možné nastaviť aj zadaním požadovaného atribútu
 $invoice['already_paid'] = true;
@@ -77,9 +77,9 @@ Dostupné atribúty:
 Zákazníka na faktúru je možné pridať metódou *setClient*.
 
 ```php
-$invoice->setClient(array(
+$invoice->setClient([
     'name' => 'Meno zákazníka'
-));
+]);
 
 // parametre je možné nastaviť aj zadaním požadovaného atribútu
 $client = $invoice->getClient();
@@ -113,12 +113,12 @@ Dostupné atribúty:
 Položku na faktúru je možné pridať metódou *addItem*.
 
 ```php
-$invoice->addItem(array(
+$invoice->addItem([
     'name' => 'Názov položky',
     'quantity' => 1,
     'unit_price' => 40.83,
     'tax' => 20
-));
+]);
 ```
 
 Dostupné atribúty:
@@ -163,12 +163,12 @@ Pri editácii načítanej faktúry je možné postupovať rovnako, ako pri vytv�
 $invoice['variable'] = '12345';
 
 // pridanie položky
-$invoice->addItem(array(
+$invoice->addItem([
     'name' => 'Názov pridávanej položky',
     'quantity' => 2,
     'unit_price' => 5.11,
     'tax' => 20
-));
+]);
 
 try {
     $invoice->save();
@@ -187,7 +187,9 @@ catch (Exception $e) {
 Označenie metódou *markAsSent*. Užitočné, pokiaľ vytvorené faktúry odosielate vlastným systémom, avšak chcete toto odoslanie evidovať aj v SuperFaktúre.
 
 ```php
-$invoice->markAsSent(array('email' => 'email@zakaznika.sk'));
+$invoice->markAsSent([
+    'email' => 'email@zakaznika.sk'
+]);
 ```
 
 Dostupné atribúty:
@@ -200,7 +202,9 @@ Dostupné atribúty:
 Odoslanie metódou *sendByEmail*. Nenastavené atribúty sa nastavia automaticky podľa nastavení v SuperFaktúre.
 
 ```php
-$invoice->sendByEmail(array('to' => 'email@zakaznika.sk'));
+$invoice->sendByEmail([
+    'to' => 'email@zakaznika.sk'
+]);
 ```
 
 Dostupné atribúty:
@@ -215,7 +219,9 @@ Dostupné atribúty:
 Pridanie úhrady k faktúre metódou *pay*.
 
 ```php
-$invoice->pay(array('amount' => 10.34));
+$invoice->pay([
+    amount' => 10.34
+]);
 ```
 
 Dostupné atribúty:

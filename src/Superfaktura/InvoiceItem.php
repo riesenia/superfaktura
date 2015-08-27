@@ -18,7 +18,7 @@ class InvoiceItem extends ApiObject
     protected function _configureOptions(OptionsResolver $resolver)
     {
         // available options
-        $resolver->setDefined(array('name', 'description', 'quantity', 'unit', 'unit_price', 'tax', 'stock_item_id', 'sku'));
+        $resolver->setDefined(['name', 'description', 'quantity', 'unit', 'unit_price', 'tax', 'stock_item_id', 'sku']);
 
         $resolver->setNormalizer('unit_price', $resolver->floatNormalizer);
         $resolver->setNormalizer('tax', $resolver->floatNormalizer);
