@@ -38,7 +38,7 @@ class Invoice extends ApiObject
         $this->_fetch();
 
         if (!isset($this->_data['InvoiceItem'])) {
-            $this->_data['InvoiceItem'] = array();
+            $this->_data['InvoiceItem'] = [];
         }
 
         $this->_data['InvoiceItem'][] = new InvoiceItem($data, $this->_api['url'], $this->_api['email'], $this->_api['key']);
@@ -63,7 +63,7 @@ class Invoice extends ApiObject
      */
     public function save()
     {
-        $data = array_intersect_key($this->_data, array('Invoice' => 1, 'Client' => 1, 'InvoiceItem' => 1));
+        $data = array_intersect_key($this->_data, ['Invoice' => 1, 'Client' => 1, 'InvoiceItem' => 1]);
 
         $response = $this->_apiPost($this->_id ? 'invoices/edit' : 'invoices/create', $data);
 
@@ -90,7 +90,7 @@ class Invoice extends ApiObject
         }
 
         $this->_apiGet('invoices/delete/' . $this->_id);
-        $this->_data = array();
+        $this->_data = [];
         $this->_id = null;
 
         return true;
@@ -102,7 +102,7 @@ class Invoice extends ApiObject
      * @param array data
      * @return bool
      */
-    public function markAsSent($data = array())
+    public function markAsSent($data = [])
     {
         if (!$this->_id) {
             return false;
@@ -120,7 +120,7 @@ class Invoice extends ApiObject
      * @param array data
      * @return bool
      */
-    public function sendByEmail($data = array())
+    public function sendByEmail($data = [])
     {
         if (!$this->_id) {
             return false;
@@ -138,7 +138,7 @@ class Invoice extends ApiObject
      * @param array data
      * @return bool
      */
-    public function pay($data = array())
+    public function pay($data = [])
     {
         if (!$this->_id) {
             return false;
@@ -193,7 +193,7 @@ class Invoice extends ApiObject
     protected function _configureOptions(OptionsResolver $resolver)
     {
         // available options
-        $resolver->setDefined(array('already_paid', 'created', 'comment', 'constant', 'delivery', 'delivery_type', 'deposit', 'discount', 'due', 'estimate_id', 'header_comment', 'internal_comment', 'invoice_currency', 'invoice_no_formatted', 'issued_by', 'issued_by_phone', 'issued_by_email', 'name', 'payment_type', 'proforma_id', 'rounding', 'specific', 'sequence_id', 'tax_document', 'type', 'variable'));
+        $resolver->setDefined(['already_paid', 'created', 'comment', 'constant', 'delivery', 'delivery_type', 'deposit', 'discount', 'due', 'estimate_id', 'header_comment', 'internal_comment', 'invoice_currency', 'invoice_no_formatted', 'issued_by', 'issued_by_phone', 'issued_by_email', 'name', 'payment_type', 'proforma_id', 'rounding', 'specific', 'sequence_id', 'tax_document', 'type', 'variable']);
 
         // validate / format options
         $resolver->setNormalizer('already_paid', $resolver->boolNormalizer);
@@ -201,9 +201,9 @@ class Invoice extends ApiObject
         $resolver->setNormalizer('delivery', $resolver->dateNormalizer);
         $resolver->setNormalizer('deposit', $resolver->floatNormalizer);
         $resolver->setNormalizer('due', $resolver->dateNormalizer);
-        $resolver->setAllowedValues('invoice_currency', array('EUR', 'USD', 'GBP', 'HUF', 'CZK', 'PLN', 'CHF', 'RUB'));
-        $resolver->setAllowedValues('rounding', array('document', 'item'));
+        $resolver->setAllowedValues('invoice_currency', ['EUR', 'USD', 'GBP', 'HUF', 'CZK', 'PLN', 'CHF', 'RUB']);
+        $resolver->setAllowedValues('rounding', ['document', 'item']);
         $resolver->setNormalizer('tax_document', $resolver->boolNormalizer);
-        $resolver->setAllowedValues('type', array('regular', 'proforma', 'cancel', 'estimate', 'order'));
+        $resolver->setAllowedValues('type', ['regular', 'proforma', 'cancel', 'estimate', 'order']);
     }
 }

@@ -63,18 +63,18 @@ abstract class ApiObject implements \JsonSerializable, \ArrayAccess
      * @param string user api token
      * @param bool if options resolver should be used
      */
-    public function __construct($data = array(), $url = null, $email = null, $key = null, $resolveOptions = true)
+    public function __construct($data = [], $url = null, $email = null, $key = null, $resolveOptions = true)
     {
         // set name
         $name = explode('\\', get_class($this));
         $this->_name = end($name);
 
         // set API credentials
-        $this->_api = array(
+        $this->_api = [
             'url' => $url,
             'email' => $email,
             'key' => $key
-        );
+        ];
 
         $this->_data[$this->_name] = $resolveOptions ? $this->_resolveOptions($data) : $data;
     }
@@ -193,7 +193,7 @@ abstract class ApiObject implements \JsonSerializable, \ArrayAccess
             $response = $client->send($request);
         } catch (\Exception $e) {
             $exception = new Exception('Superfaktura API call failed', $e->getCode(), $e);
-            $exception->setErrors(array('message' => $e->getMessage()));
+            $exception->setErrors(['message' => $e->getMessage()]);
             throw $exception;
         }
 

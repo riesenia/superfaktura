@@ -30,10 +30,10 @@ class InvoicePayment extends ApiObject
     protected function _configureOptions(OptionsResolver $resolver)
     {
         // available options
-        $resolver->setDefined(array('invoice_id', 'payment_type', 'amount', 'currency', 'created'));
+        $resolver->setDefined(['invoice_id', 'payment_type', 'amount', 'currency', 'created']);
 
         $resolver->setRequired('invoice_id');
-        $resolver->setAllowedValues('payment_type', array('cash', 'transfer', 'credit', 'paypal', 'cod'));
+        $resolver->setAllowedValues('payment_type', ['cash', 'transfer', 'credit', 'paypal', 'cod']);
         $resolver->setRequired('amount');
         $resolver->setNormalizer('created', $resolver->dateNormalizer);
 
